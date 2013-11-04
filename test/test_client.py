@@ -866,6 +866,10 @@ with client.start_request() as request:
         # OperationFailure doesn't affect the request socket
         self.assertEqual(old_sock_info, pool._get_request_state())
 
+    def test_alive(self):
+        client = MongoClient('doesnt exist', _connect=False)
+        self.assertFalse(client.alive())
+
 
 if __name__ == "__main__":
     unittest.main()
